@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -31,7 +30,7 @@ function App() {
     insurances.forEach(i => encodedData[`PreviousInsurance_${i}`] = form.PreviousInsurance === i ? 1 : 0);
 
     try {
-      const res = await axios.post('http://localhost:5000/predict', encodedData);
+      const res = await axios.post('https://axa-backend-apii.onrender.com/predict', encodedData);
       setResult(res.data.recommended_policy);
     } catch (error) {
       console.error(error);

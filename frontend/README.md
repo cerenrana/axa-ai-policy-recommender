@@ -1,4 +1,3 @@
-# Frontend (React)
+# AXA AI Policy Frontend
 
-1. `npm install`
-2. `npm start`
+This is the frontend for the AXA AI policy recommender app.
