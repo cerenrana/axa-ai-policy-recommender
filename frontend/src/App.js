@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -22,12 +23,14 @@ function App() {
     const insurances = ['Health', 'Car', 'Home', 'Life'];
 
     const encodedData = {
-      Age: parseInt(form.Age)
+      Age: Number(form.Age)
     };
 
     professions.forEach(p => encodedData[`Profession_${p}`] = form.Profession === p ? 1 : 0);
     cities.forEach(c => encodedData[`City_${c}`] = form.City === c ? 1 : 0);
     insurances.forEach(i => encodedData[`PreviousInsurance_${i}`] = form.PreviousInsurance === i ? 1 : 0);
+
+    console.log("Encoded data to send:", encodedData); // 🔍 Debug çıktısı
 
     try {
       const res = await axios.post('https://axa-backend-apii.onrender.com/predict', encodedData);
