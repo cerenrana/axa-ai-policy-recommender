@@ -26,10 +26,19 @@ model.fit(X, y)
 @app.route('/predict', methods=['POST'])
 def predict():
     user_data = request.json
-    input_data = pd.DataFrame([user_data])
-    prediction = model.predict(input_data)
+    input_df = pd.DataFrame([user_data])
+
+    # Eksik sütunları sıfırla ve sırayı düzelt
+    expected_columns = X.columns
+    for col in expected_columns:
+        if col not in input_df.columns:
+            input_df[col] = 0
+    input_df = input_df[expected_columns]
+
+    prediction = model.predict(input_df)
     return jsonify({'recommended_policy': prediction[0]})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
-
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
