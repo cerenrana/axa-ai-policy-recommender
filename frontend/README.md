@@ -1,3 +1,2 @@
 # AXA AI Policy Frontend
-
-This is the frontend for the AXA AI policy recommender app.
+This is the frontend React app for the AXA AI policy recommender.
